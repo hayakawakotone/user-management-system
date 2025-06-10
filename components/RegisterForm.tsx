@@ -64,7 +64,7 @@ interface RegisterFormInputs {
           margin="normal"
         />
         <TextField
-          label="ロール"
+          label="役職"
           {...register("role", { required: "ロールは必須です" })}
           error={!!errors.role}
           helperText={errors.role?.message}
