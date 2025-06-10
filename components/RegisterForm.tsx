@@ -32,9 +32,7 @@ interface RegisterFormInputs {
       await createUser(data);
       if (onSuccess) {
         onSuccess();
-      } else {
-        router.push("/users");
-      }
+      } 
     } catch (error) {
           }
   };
