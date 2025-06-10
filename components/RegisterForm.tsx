@@ -2,7 +2,6 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TextField, Button, Box, Typography, Alert } from "@mui/material";
-import { useRouter } from "next/navigation";
 import { createUser } from "../utils/api";
 
 export interface RegisterFormProps {
@@ -26,7 +25,6 @@ interface RegisterFormInputs {
     formState: { errors },
   } = useForm<RegisterFormInputs>();
 
-    const router = useRouter();
    const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
     try {
       await createUser(data);
