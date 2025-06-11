@@ -21,7 +21,6 @@ interface EditUserFormInputs {
   role: string;
 }
 
-// TODO: ユーザー編集フォームコンポーネントを実装する
 const EditUserForm: React.FC<EditUserFormProps> = ({ userId ,onSuccess}) => {
   const {
     register,
@@ -54,7 +53,6 @@ const EditUserForm: React.FC<EditUserFormProps> = ({ userId ,onSuccess}) => {
         if (onSuccess) {
         onSuccess();
       }  // APIに更新依頼
-      alert("更新しました！");
     } catch (error) {
       console.error("更新エラー:", error);
     }
