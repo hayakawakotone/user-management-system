@@ -1,26 +1,39 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import UserCard from "./UserCard"; //ユーザー情報を表示するインポート
 import { User } from "../types/User";
+import { fetchUsers } from "@/utils/api";
+import Grid from '@mui/material/GridLegacy';
 
-// props 型定義
-// 親コンポーネントから渡される users 配列を受け取る
-interface UserListProps {
-  users: User[];
-}
+/// ユーザー一覧表示コンポーネント
+const UserList = () => {
+  const [users, setUsers] = useState<User[]>([]);
 
-//ユーザー一覧表示用の関数コンポーネント
+  // コンポーネントが最初に表示されたときに実行される処理
+  useEffect(() => {
+    const fetchData = async () => {
+      const allUsers = await fetchUsers(); // ユーザー一覧をAPIから取得
+      setUsers(allUsers);
+    };
 
-const UserList: React.FC<UserListProps> = ({ users }) => {
+    fetchData(); 
+  }, []); 
+
+  // 指定されたIDのユーザーを一覧から除く
+  const handleDelete = (userId: number) => {
+    setUsers(prev => prev.filter(user => user.id !== userId)); 
+  };
+
+  // 表示部分
   return (
-    <div>
-      {/* users 配列の中身を1つずつ処理、それを UserCard に渡す表示 */}
-      {users.map((user) => (
-        // UserCard を  keyでユーザー1人分として表示
-        <UserCard key={user.id} user={user} />
+    <Grid container direction="column" spacing={2}>
+      {users.map(user => (
+        <Grid item key={user.id} xs={12}>
+          {/* 削除ボタンのonDeleteにhandleDeleteを渡す */}
+          <UserCard user={user} onDelete={handleDelete} />
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 };
-// このコンポーネントを外部で使えるようにエクスポート
 export default UserList;
-
