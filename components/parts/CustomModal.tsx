@@ -14,9 +14,16 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+interface CustomModalProps {
+  open: boolean;
+  title: string;
+  content: string;
+  onClose: () => void;
+  onConfirm?: () => void;
+}
 
-// TODO: propの設定
-const CustomModal: React.FC<CustomModalProps> = () => {
+// : propの設定
+const CustomModal: React.FC<CustomModalProps> = ({open, title, content, onClose, onConfirm}) => {
   return (
     <Modal open={open} onClose={onClose}>
       <Box sx={style}>
