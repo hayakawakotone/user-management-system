@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@mui/material";
+import CustomButton from './parts/CustomButton'; //追記：カスタムボタンのインポート
 import { softDeleteUser } from "../utils/api";
 
 // インターフェイスの型定義：親コンポーネントから受け取るprops
@@ -29,9 +29,13 @@ const DeleteUserButton: React.FC<DeleteUserButtonProps> = ({ userId, onDelete })
   };
 // クリック時に削除処理を実行するボタン
   return (
-    <Button variant="outlined" color="error" onClick={handleDelete}>
-      削除
-    </Button>
+    //追記と差し替え　カスタムボタンに変更
+    <CustomButton
+      variantType="danger"     // 色をdangerに指定して赤色のボタンにする
+      onClick={handleDelete}   // クリック時に削除処理を実行（前回からの引継ぎ）
+    >
+      削除                    
+    </CustomButton>
   );
 };
 
