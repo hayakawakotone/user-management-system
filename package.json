@@ -19,7 +19,8 @@
     "next": "^15.3.3",
     "react": "^19",
     "react-dom": "^19",
-    "react-hook-form": "^7.57.0"
+    "react-hook-form": "^7.57.0",
+    "react-router-dom": "^7.6.2"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.6.14",
