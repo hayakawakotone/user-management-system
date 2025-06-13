@@ -9,13 +9,25 @@ interface CustomButtonProps extends ButtonProps {
 
 const CustomButton: React.FC<CustomButtonProps> = ({ variantType = 'primary', ...props }) => {
   let color: ButtonProps['color'] = 'primary';
-
-	// TODO: variantTypeに応じてcolorを変化させる
-	// colorに設定する色は調べて実装する
-
+// 追記部分
+// 初期値はprimary、variantTypeがもしsecondaryだったら、と続く
+if (variantType === 'secondary') {
+    color = 'secondary'; //サブカラー紫
+  } else if (variantType === 'danger') {
+    color = 'error'; //エラーカラー赤
+  } else {
+    color = 'primary'; //メインカラー青
+  }
   return (
-		// TODO: <Button>の実装
-		// プロップスには[color][variant]を設定し、{...props}を最後に設定する
+    // variantで"contained"ボタンの見た目を統一
+    // {...props}でonClickやchildrenを渡す
+    <Button
+      color={color}
+      variant="contained"
+      {...props} // ボタンに必要なすべての属性を渡すため
+    >
+      {props.children} {/*中身の変えられる汎用コンポーネント */}
+    </Button>
   );
 }
 
